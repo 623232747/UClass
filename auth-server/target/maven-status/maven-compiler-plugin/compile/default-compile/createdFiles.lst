@@ -1,0 +1,4 @@
+org\BUPT\entity\User.class
+org\BUPT\AuthServerApplication.class
+org\BUPT\DAO\UserRepository.class
+org\BUPT\controller\UserController.class
