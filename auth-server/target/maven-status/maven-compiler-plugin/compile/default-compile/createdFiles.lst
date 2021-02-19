@@ -1,4 +1,12 @@
-org\BUPT\entity\User.class
+org\BUPT\authorization\resolvers\CurrentUserMethodArgumentResolver.class
+org\BUPT\authorization\Config\Constants.class
+org\BUPT\authorization\manager\TokenManager.class
+org\BUPT\authorization\interceptor\AuthorizationInterceptor.class
+org\BUPT\authorization\manager\impl\RedisTokenManager.class
+org\BUPT\authorization\annotation\Authorization.class
+org\BUPT\authorization\model\TokenModel.class
 org\BUPT\AuthServerApplication.class
 org\BUPT\DAO\UserRepository.class
-org\BUPT\controller\UserController.class
+org\BUPT\authorization\annotation\CurrentUser.class
+org\BUPT\entity\User.class
+org\BUPT\authorization\Config\MvcConfig.class

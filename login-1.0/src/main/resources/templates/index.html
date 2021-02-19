@@ -29,7 +29,7 @@
 						<footer id="app">
 							<table>
 								<tr>
-									<input placeholder="用户名" type="text" v-model="username">
+									<input placeholder="账号" type="text" v-model="userID">
 								</tr>
 								<tr>
 									<input placeholder="密码" type="password" v-model="password">
@@ -62,15 +62,15 @@
 			var app = new Vue({
 				el:'#app',
 				data:{
-					username:'',
+					userID:'',
 					password:'',
 				},
 				methods:{
 					login(){
-						console.log(this.username+" "+this.password);
+						// console.log(this.userID+" "+this.password);
 						axios.post('http://localhost:8094/login',
 								{
-									'username':this.username,
+									'userID':this.userID,
 									'password':this.password,
 								},
 								{
@@ -102,6 +102,11 @@
 					},
 					register(){
 						console.log("注册");
+						axios.delete('http://localhost:8094/register',{data:{}}).then(function (response){
+							console.log(response);
+						}).catch(function(error){
+							console.log(error);
+						});
 					}
 				}
 			})
