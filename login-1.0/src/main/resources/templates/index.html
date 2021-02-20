@@ -12,6 +12,8 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script src="https://unpkg.com/vuex"></script>
+
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
@@ -36,7 +38,7 @@
 								</tr>
 							</table>
 							<button @click="login">登录</button>
-							<button @click="register">注册</button>
+							<button @click="register">注销</button>
 							<br/>
 							<a>忘记密码</a>
 						</footer>
@@ -53,65 +55,14 @@
 			</div>
 
 		<!-- Scripts -->
-			<script>
+			<script type="module">
 				if ('addEventListener' in window) {
 					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
 					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
 				}
 
-			var app = new Vue({
-				el:'#app',
-				data:{
-					userID:'',
-					password:'',
-				},
-				methods:{
-					login(){
-						// console.log(this.userID+" "+this.password);
-						axios.post('http://localhost:8094/login',
-								{
-									'userID':this.userID,
-									'password':this.password,
-								},
-								{
-									headers:{
-										// @RequestParam需要使用如下这种type进行数据传输
-										'Content-Type':'application/x-www-form-urlencoded',
-									},
-									// 这个其实是在模仿qs库对传输的data进行处理，也可以直接调用qs库
-									// 见 https://blog.csdn.net/u011332271/article/details/100515870
-									// https://blog.csdn.net/qq_43681948/article/details/102815325
-									transformRequest: [
-										function(data) {
-											let ret = "";
-											for (let it in data) {
-												ret +=
-														encodeURIComponent(it) +
-														"=" +
-														encodeURIComponent(data[it]) +
-														"&";
-											}
-											return ret;
-										}
-									],
-								}).then(function(response){
-							console.log(response);
-						}).catch(function(error){
-							console.log(error);
-						});
-					},
-					register(){
-						console.log("注册");
-						axios.delete('http://localhost:8094/register',{data:{}}).then(function (response){
-							console.log(response);
-						}).catch(function(error){
-							console.log(error);
-						});
-					}
-				}
-			})
 		</script>
-
+		<script type="module" src="main.js"></script>
 
 	</body>
 </html>

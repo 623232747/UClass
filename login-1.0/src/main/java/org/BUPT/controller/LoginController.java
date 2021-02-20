@@ -7,6 +7,8 @@ package org.BUPT.controller;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.BUPT.DAO.UserRepository;
+import org.BUPT.Result.ResultModel;
+import org.BUPT.Result.ResultStatus;
 import org.BUPT.authorization.Config.Constants;
 import org.BUPT.authorization.annotation.Authorization;
 import org.BUPT.authorization.annotation.CurrentUser;
@@ -37,9 +39,9 @@ public class LoginController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/login")
     @ResponseBody
-    public String login(@RequestParam(value = "userID") String userID, @RequestParam(value = "password") String password) {
+    @PostMapping("/login")
+    public ResponseEntity<ResultModel> login(@RequestParam(value = "userID") String userID, @RequestParam(value = "password") String password) {
 
         Assert.notNull(userID, "username can not be empty");
         Assert.notNull(password, "password can not be empty");
@@ -48,11 +50,11 @@ public class LoginController {
         User user = userRepository.findById(Long.parseLong(userID)).orElse(Constants.defaltUser);
         if (user.getId() != null && user.getPassword().equals(password)) {
             TokenModel token = tokenManager.createToken(user.getId());
-            System.out.println(token.getUserId());
-            System.out.println(tokenManager.checkToken(token));
-            return "LOGIN SECCESS";
+//            System.out.println(token.getUserId());
+//            System.out.println(tokenManager.checkToken(token));
+            return new ResponseEntity<>(ResultModel.ok(token), HttpStatus.OK);
         } else {
-            return "LOGIN FAIL";
+            return new ResponseEntity<>(ResultModel.error(ResultStatus.USERNAME_OR_PASSWORD_ERROR), HttpStatus.NOT_FOUND);
         }
     }
 
@@ -62,11 +64,11 @@ public class LoginController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "authorization", value = "authorization", required = true, dataType = "string", paramType = "header"),
     })
-    public ResponseEntity<String> logout(@CurrentUser User user) {
-//        System.out.println(user.getId());
-        tokenManager.deleteToken(user.getId());
+    public ResponseEntity<ResultModel> logout(@CurrentUser User user) {
 
-        return new ResponseEntity<>("LOGOUT", HttpStatus.OK);
+        tokenManager.deleteToken(user.getId());
+        System.out.println("delete ok");
+        return new ResponseEntity<>(ResultModel.ok(), HttpStatus.OK);
     }
 
 
