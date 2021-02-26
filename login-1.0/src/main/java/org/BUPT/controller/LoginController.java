@@ -1,9 +1,4 @@
 package org.BUPT.controller;
-//import org.BUPT.DAO.UserRepository;
-//import io.swagger.annotations.ApiImplicitParam;
-//import io.swagger.annotations.ApiImplicitParams;
-//import org.BUPT.authorization.annotation.Authorization;
-//import org.BUPT.authorization.annotation.CurrentUser;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import org.BUPT.DAO.UserRepository;
@@ -21,8 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/")
@@ -50,8 +43,6 @@ public class LoginController {
         User user = userRepository.findById(Long.parseLong(userID)).orElse(Constants.defaltUser);
         if (user.getId() != null && user.getPassword().equals(password)) {
             TokenModel token = tokenManager.createToken(user.getId());
-//            System.out.println(token.getUserId());
-//            System.out.println(tokenManager.checkToken(token));
             return new ResponseEntity<>(ResultModel.ok(token), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(ResultModel.error(ResultStatus.USERNAME_OR_PASSWORD_ERROR), HttpStatus.NOT_FOUND);

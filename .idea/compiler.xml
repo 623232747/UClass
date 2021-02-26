@@ -8,6 +8,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="main" />
+        <module name="register-1.0" />
         <module name="login-1.0" />
         <module name="zuul-gateway" />
         <module name="eureka-server" />
@@ -20,6 +22,7 @@
       <module name="auth-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="login-1.0" options="-parameters" />
+      <module name="main" options="-parameters" />
       <module name="zuul-gateway" options="-parameters" />
     </option>
   </component>

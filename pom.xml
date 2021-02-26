@@ -20,6 +20,8 @@
         <module>login-1.0</module>
         <module>auth-server</module>
         <module>zuul-gateway</module>
+        <module>register-1.0</module>
+        <module>main</module>
     </modules>
 
     <build>
