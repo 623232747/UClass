@@ -8,21 +8,34 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="main" />
-        <module name="register-1.0" />
-        <module name="login-1.0" />
         <module name="zuul-gateway" />
+        <module name="FrontEnd" />
+        <module name="AuthorizationService" />
+        <module name="UserManager" />
+        <module name="front-end" />
         <module name="eureka-server" />
-        <module name="auth-server" />
+        <module name="QuestionService" />
+        <module name="LoginService" />
+        <module name="QuestionManager" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="auth-server" target="8" />
+      <module name="front-end" target="8" />
+      <module name="QuestionListService" target="8" />
+      <module name="register-1.0" target="8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="FrontEnd" options="-parameters" />
+      <module name="LoginService" options="-parameters" />
+      <module name="QuestionListService" options="-parameters" />
+      <module name="QuestionManager" options="-parameters" />
+      <module name="QuestionService" options="-parameters" />
+      <module name="UserManager" options="-parameters" />
       <module name="auth-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
-      <module name="login-1.0" options="-parameters" />
-      <module name="main" options="-parameters" />
       <module name="zuul-gateway" options="-parameters" />
     </option>
   </component>

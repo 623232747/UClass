@@ -17,11 +17,13 @@
     </properties>
     <modules>
         <module>eureka-server</module>
-        <module>login-1.0</module>
-        <module>auth-server</module>
+        <module>LoginService</module>
         <module>zuul-gateway</module>
-        <module>register-1.0</module>
-        <module>main</module>
+        <module>QuestionService</module>
+        <module>FrontEnd</module>
+        <module>UserManager</module>
+        <module>QuestionManager</module>
+        <module>AuthorizationService</module>
     </modules>
 
     <build>
@@ -29,6 +31,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.1.3.RELEASE</version>
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
